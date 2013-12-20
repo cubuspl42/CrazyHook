@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CrazyHook", "CrazyHook\CrazyHook.vcxproj", "{BD360DEF-38C1-495C-8912-9C3537832C49}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD360DEF-38C1-495C-8912-9C3537832C49}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BD360DEF-38C1-495C-8912-9C3537832C49}.Debug|Win32.Build.0 = Debug|Win32
+		{BD360DEF-38C1-495C-8912-9C3537832C49}.Release|Win32.ActiveCfg = Release|Win32
+		{BD360DEF-38C1-495C-8912-9C3537832C49}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
