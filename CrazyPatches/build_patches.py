@@ -2,24 +2,17 @@ import collections
 import pefile
 import fileinput
 import sys
-from mako.template import Template
+import binascii
 
 pe_path = sys.argv[1]
-
-Patch = collections.namedtuple('Patch', 'name virtual_address data')
-
-mytemplate = Template(filename='CrazyPatches.mako')
 
 pe = pefile.PE(pe_path)
 image_base = pe.OPTIONAL_HEADER.ImageBase
 
+def fhex(byte):
+	return hex(byte)[2:].zfill(2)+" "
+
 def build_patch(section):
-	return Patch(
-		name = section.Name,
-		virtual_address = image_base + section.VirtualAddress,
-		data = section.get_data()[:section.Misc_VirtualSize]
-	)
+	print("_chamAdd(0x" + hex(image_base + section.VirtualAddress)[2:].upper() + ',"' + "".join(map(fhex, section.get_data()[:section.Misc_VirtualSize]))[:-1].upper() + '")')
 
-patches = map(build_patch, pe.sections)
-
-print(mytemplate.render(patches=patches))
+list(map(build_patch, pe.sections))
