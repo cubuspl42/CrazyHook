@@ -4,12 +4,12 @@ extern LABEL_GottaMoveThis
 extern ResetNameString
 extern Chameleon
 extern LABEL_BackFromMenuHook
-extern LABEL_BackFromMenuHook2
 extern LABEL_BackFromChameleon1
 extern LABEL_BackFromChameleon2
 extern LABEL_BackFromChameleon4
 extern ClawLogicFrag
 extern Chameleon1Jump
+extern CLAW_45D503
 
 global LABEL_MenuHook
 global LABEL_MenuHook2
@@ -56,7 +56,7 @@ JMP LABEL_TestExit
 LABEL_MenuHookEnd:
 MOV [ECX+220], EAX
 MOV EAX, ECX
-JMP LABEL_BackFromMenuHook2
+JMP CLAW_45D503
 
 LABEL_Chameleon4:
 PUSH EDX

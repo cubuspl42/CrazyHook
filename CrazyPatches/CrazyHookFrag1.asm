@@ -17,6 +17,7 @@ extern LABEL_BackFromChameleon7
 
 global LABEL_Chameleon5
 global LABEL_Chameleon7
+global LABEL_SomethingRelatedToAssetsLoading
 
 section .text align=1
 
@@ -81,6 +82,7 @@ POP EDX
 POP EDX
 MOV ECX,EBX
 JMP LABEL_ToPush
+LABEL_SomethingRelatedToAssetsLoading:
 PUSH ESI
 PUSH EAX
 CALL CLAW_50B56D
