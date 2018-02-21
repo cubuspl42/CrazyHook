@@ -1,2 +1,2 @@
 cd LuaJIT\src
-.\msvcbuild.bat
+.\msvcbuild.bat static
