@@ -3,7 +3,7 @@ extern CreateObject
 extern LABEL_GottaMoveThis
 extern ResetNameString
 extern Chameleon
-extern LABEL_BackFromMenuHook
+extern LABEL_BackFromClawLevel11Fix
 extern LABEL_BackFromChameleon1
 extern LABEL_BackFromChameleon2
 extern LABEL_BackFromChameleon4
@@ -12,7 +12,7 @@ extern Chameleon1Jump
 extern CLAW_45D503
 
 global LABEL_MenuHook
-global LABEL_MenuHook2
+global LABEL_ClawLevel11Fix
 global LABEL_Chameleon4
 global LABEL_Chameleon3
 global LABEL_Chameleon2
@@ -30,7 +30,7 @@ JMP $+2+5
 MOV EAX, ResetNameString
 JMP LABEL_MenuHookEnd
 
-LABEL_MenuHook:
+LABEL_ClawLevel11Fix:
 PUSH 60
 PUSH 16
 PUSH -52
@@ -40,9 +40,9 @@ POP DWORD [EBX+312]
 POP DWORD [EBX+316]
 POP DWORD [EBX+320]
 CALL ClawLogicFrag
-JMP LABEL_BackFromMenuHook
+JMP LABEL_BackFromClawLevel11Fix
 
-LABEL_MenuHook2:
+LABEL_MenuHook:
 PUSH 0
 PUSH MenuHookString
 PUSH 9999

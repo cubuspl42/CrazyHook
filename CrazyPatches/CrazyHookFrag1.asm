@@ -21,6 +21,9 @@ global LABEL_SomethingRelatedToAssetsLoading
 
 section .text align=1
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; CHAMELEON MAIN
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 CALL CLAW_46FF50                            ; \CLAW.0046FF50
 PUSH EAX
 PUSH EDX

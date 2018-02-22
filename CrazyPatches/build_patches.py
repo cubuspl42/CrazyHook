@@ -15,4 +15,13 @@ def fhex(byte):
 def build_patch(section):
 	print("_chamAdd(0x" + hex(image_base + section.VirtualAddress)[2:].upper() + ',"' + "".join(map(fhex, section.get_data()[:section.Misc_VirtualSize]))[:-1].upper() + '")')
 
+print('local function _chamAdd(addr, code) \
+	local cham_exe = ffi.cast("char*",addr) \
+	local i = 0 \
+	for v in string.gmatch(code, "([^ ]+)") do \
+		cham_exe[i] = tonumber(v, 16) \
+		i = i+1 \
+	end \
+end')
+
 list(map(build_patch, pe.sections))
