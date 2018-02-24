@@ -1,0 +1,7 @@
+*.exe
+*.obj
+*.lua
+*.ld
+inlines
+.sources
+.idea
