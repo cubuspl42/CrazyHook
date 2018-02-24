@@ -1,5 +1,7 @@
 *.exe
 *.obj
 *.lua
-0x[0-9a-fA-F]*.asm
 *.ld
+inlines
+.sources
+.idea
