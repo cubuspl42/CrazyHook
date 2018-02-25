@@ -33,7 +33,7 @@ if %parsed% gtr 0 (
 	) else (
 		if not exist CrazyPatches.exe (
 			call :makeExe
-			IF NOT '%ERRORLEVEL%'=='0' (
+			if not exist CrazyPatches.exe (
 				echo Build failed.
 				EXIT /B 0
 			)
