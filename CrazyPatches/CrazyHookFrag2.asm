@@ -1,7 +1,8 @@
-extern MenuHookString
-extern CreateObject
-extern LABEL_GottaMoveThis
-extern ResetNameString
+;extern MenuHookString
+;extern CustomLogicString
+;extern CreateObject
+;extern LABEL_GottaMoveThis
+;extern ResetNameString
 extern Chameleon
 extern LABEL_BackFromClawLevel11Fix
 extern LABEL_BackFromChameleon1
@@ -11,7 +12,7 @@ extern ClawLogicFrag
 extern Chameleon1Jump
 extern CLAW_45D503
 
-global LABEL_MenuHook
+;global LABEL_MenuHook
 global LABEL_ClawLevel11Fix
 global LABEL_Chameleon4
 global LABEL_Chameleon3
@@ -21,16 +22,16 @@ global LABEL_Chameleon1
 section .text align=1
 
 DB "CUSTOM_SPLASH",0
-LABEL_TestExit:
-	MOV EAX, [LABEL_GottaMoveThis]
-	TEST EAX, EAX
-	JMP LABEL_ToResetName
-	MOV EAX, MenuHookString
-	JMP LABEL_ToEnd
-	LABEL_ToResetName:
-		MOV EAX, ResetNameString
-	LABEL_ToEnd:
-		JMP LABEL_MenuHookEnd
+;LABEL_TestExit:
+;	MOV EAX, [LABEL_GottaMoveThis]
+;	TEST EAX, EAX
+;	JMP LABEL_ToResetName
+;	MOV EAX, MenuHookString
+;	JMP LABEL_ToEnd
+;	LABEL_ToResetName:
+;		MOV EAX, ResetNameString
+;	LABEL_ToEnd:
+;		JMP LABEL_MenuHookEnd
 
 LABEL_ClawLevel11Fix:
 	PUSH 60
@@ -44,21 +45,21 @@ LABEL_ClawLevel11Fix:
 	CALL ClawLogicFrag
 	JMP LABEL_BackFromClawLevel11Fix
 
-LABEL_MenuHook:
-	PUSH 0
-	PUSH MenuHookString
-	PUSH 9999
-	PUSH 100
-	PUSH -30
-	PUSH 0
-	CALL CreateObject
-	MOV ECX, EAX
-	JMP LABEL_TestExit
+;LABEL_MenuHook:
+;	PUSH 0
+;	PUSH CustomLogicString
+;	PUSH 9999
+;	PUSH 100
+;	PUSH -30
+;	PUSH 0
+;	CALL CreateObject
+;	MOV ECX, EAX
+;	JMP LABEL_TestExit
 
-LABEL_MenuHookEnd:
-	MOV [ECX+220], EAX
-	MOV EAX, ECX
-	JMP CLAW_45D503
+;LABEL_MenuHookEnd:
+;	MOV [ECX+220], EAX
+;	MOV EAX, ECX
+;	JMP CLAW_45D503
 
 LABEL_Chameleon4:
 	PUSH EDX

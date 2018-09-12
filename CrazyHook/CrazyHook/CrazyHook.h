@@ -21,7 +21,9 @@ struct Rect {
 };
 
 struct ObjectV {
-	int offset[6];
+	int offset[4];
+	int logic;
+	int pdata;
 	Object* userdata;
 	int state;
 };
