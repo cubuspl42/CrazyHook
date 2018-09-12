@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include <cstdlib>
 #include <lua.hpp>
+#include "CrazyHook.h"
 
 lua_State *L = NULL;
 

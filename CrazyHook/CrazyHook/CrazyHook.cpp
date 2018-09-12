@@ -32,6 +32,21 @@ void call_lua(const char* fnName, ObjectA *a) {
 	}
 }
 
+void call_lua(const char* fnName) {
+	lua_getglobal(L, "_lua");
+	if (!lua_isfunction(L, -1)) {
+		MessageBox(0, "Critical error: function _lua does not exit", fnName, 0);
+		ExitProcess(1);
+	}
+	lua_pushstring(L, fnName);
+	__try {
+		lua_call(L, 1, 0);
+	}
+	__except (1) {
+		MessageBox(0, fnName, "native exception", 0);
+	}
+}
+
 int CustomLogic(ObjectA* a) {
 	Object *&userdata = a->v->userdata;
 	if(!a->v->userdata) {
@@ -59,6 +74,12 @@ int CustomBump(ObjectA *a) {
 	return 1;
 }
 
+int MenuHook(ObjectA* a) {
+	call_lua("_menu");
+	a->v->logic = 0x4614D0; //MenuClaw
+	return 1;
+}
+
 #define REGISTER_LOGIC(logic) (s->*registerLogic)(logic, #logic, 0)
 
 extern "C" {
@@ -81,6 +102,7 @@ CRAZYHOOK_API void CrazyHook(UnknownStruct *s)
 	REGISTER_LOGIC(CustomHit);
 	REGISTER_LOGIC(CustomAttack);
 	REGISTER_LOGIC(CustomBump);
+	REGISTER_LOGIC(MenuHook);
 
 	// Step 2. Execute CrazyHook.lua
 	if(luaL_dofile(L, "CrazyHook.lua")) {
