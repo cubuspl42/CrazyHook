@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CrazyHook", "CrazyHook\CrazyHook.vcxproj", "{BD360DEF-38C1-495C-8912-9C3537832C49}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -11,7 +11,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CrazyHook", "CrazyHook\Craz
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LuaJIT", "LuaJIT\LuaJIT.vcxproj", "{223F31B1-DD39-48E4-8982-F05A8DBE9531}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LFS", "LFS\LFS.vcxproj", "{2833B9C0-717D-4E11-98B2-4944AB787329}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lfs", "LFS\LFS.vcxproj", "{2833B9C0-717D-4E11-98B2-4944AB787329}"
+	ProjectSection(ProjectDependencies) = postProject
+		{223F31B1-DD39-48E4-8982-F05A8DBE9531} = {223F31B1-DD39-48E4-8982-F05A8DBE9531}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,5 +37,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F949A38-4951-4694-AC9E-0281936CE456}
 	EndGlobalSection
 EndGlobal
