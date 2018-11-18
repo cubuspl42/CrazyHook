@@ -10,6 +10,9 @@
 #define CRAZYHOOK_API __declspec(dllimport)
 #endif
 
+struct ObjectA;
+typedef int(*Logic)(ObjectA*);
+
 struct UnknownStruct {};
 struct Object;
 
@@ -22,7 +25,7 @@ struct Rect {
 
 struct ObjectV {
 	int offset[4];
-	int logic;
+	Logic logic;
 	int pdata;
 	Object* userdata;
 	int state;

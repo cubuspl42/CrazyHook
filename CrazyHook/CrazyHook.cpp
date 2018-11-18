@@ -11,10 +11,31 @@ using namespace std;
 typedef int (*Logic)(ObjectA*);
 extern lua_State *L;
 
+static void msgbox(const char *fnName, const char* stringParam) {
+	stringstream ss;
+	ss << fnName << " " << stringParam;
+	MessageBox(0, ss.str().c_str(), "native exception", 0);
+}
+
 static void msgbox(const char *fnName, ObjectA *a) {
 	stringstream ss;
 	ss << fnName << " " << a->_Name;
 	MessageBox(0, ss.str().c_str(), "native exception", 0);
+}
+
+void call_lua(const char* fnName, const char* stringParam) {
+	lua_getglobal(L, "_lua");
+    if (!lua_isfunction(L, -1)) {
+        MessageBox(0, "Critical error: function _lua does not exit" , fnName, 0);
+		ExitProcess(1);
+    }
+	lua_pushstring(L, fnName);
+	lua_pushstring(L, stringParam);
+	__try {
+		lua_call(L, 2, 0);
+	} __except(1) {
+		msgbox(fnName, stringParam);
+	}
 }
 
 void call_lua(const char* fnName, ObjectA *a) {
@@ -54,8 +75,10 @@ int CustomLogic(ObjectA* a) {
 		userdata = new Object(a);
 		call_lua("_create", a);
 	}
-	assert(a->v->userdata->a == a);
-	call_lua("_logic", a);
+	else {
+		assert(a->v->userdata->a == a);
+		call_lua("_logic", a);
+	}
 	return 1;
 }
 
@@ -75,8 +98,7 @@ int CustomBump(ObjectA *a) {
 }
 
 int MenuHook(ObjectA* a) {
-	call_lua("_menu");
-	a->v->logic = 0x4614D0; //MenuClaw
+	call_lua("_menu", a);
 	return 1;
 }
 
@@ -109,6 +131,32 @@ CRAZYHOOK_API void CrazyHook(UnknownStruct *s)
 		MessageBox(0, lua_tostring(L, -1), "CrazyHook.lua error", 0);
 		ExitProcess(1);
 	}
+}
+
+/*CRAZYHOOK_API ObjectA* CObject(ObjectA* object)
+{
+	MessageBox(0, "a", "CreatedObject", 0);
+	return object;
+}*/
+
+typedef void (LoopThroughObjectsCallback)(ObjectA* a);
+
+void InitObjectCallback(ObjectA* a) {
+	((LoopThroughObjectsCallback*)(0x46EDF0))(a); //register treasure
+	if (a->v->logic == CustomLogic) {
+		CustomLogic(a);
+	}
+}
+
+CRAZYHOOK_API void CObList(UnknownStruct *s)
+{
+	// Step 1. Parse objects list and init each
+	typedef int (UnknownStruct::*LoopThroughObjects)(void(ObjectA* a));
+	LoopThroughObjects loopThroughObjects;
+	(int&)loopThroughObjects = 0x4D6110;
+	call_lua("_hook", "PreInit");
+	(s->*loopThroughObjects)(InitObjectCallback);
+	call_lua("_hook", "PreInit");
 }
 
 }
